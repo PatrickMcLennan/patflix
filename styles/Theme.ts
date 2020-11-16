@@ -38,12 +38,12 @@ export const GlobalStyles = createGlobalStyle`
 
 /**
  * Theme of variables and functions.
- * Variables work the same as sass, and functions are basically mixins.
+ * Variables work the same as sass, and functions work the same as mixins.
  */
 
 export const theme = {
   /**
-   * Layout "mixins"
+   * Layout
    */
   flex: (jc = `center`, ai = `center`, fd = `row`, fw = `nowrap`): CSS => css`
     display: flex;
@@ -54,7 +54,7 @@ export const theme = {
   `,
 
   /**
-   * Typography "mixins"
+   * Typography
    */
   fontLine: (fs: string, lh?: string): CSS => css`
     font-size: ${fs}rem;

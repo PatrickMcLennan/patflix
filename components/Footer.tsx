@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Text from './Text';
+
 /**
  * Global Footer component.
  */
@@ -11,7 +12,9 @@ export default function Footer(): JSX.Element {
   const year = new Date().getFullYear();
   return (
     <FooterStyles>
-      <Text as="span">Patrick McLennan&#169; {year}</Text>
+      <Text data-testid="copyright" as="span">
+        Patrick McLennan&#169; {year}
+      </Text>
     </FooterStyles>
   );
 }

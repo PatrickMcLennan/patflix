@@ -23,7 +23,7 @@ interface Props {
 export default function SEO({ title }: Props): JSX.Element {
   return (
     <Head>
-      <title>{title}</title>
+      <title data-testid="head_title">{title}</title>
     </Head>
   );
 }

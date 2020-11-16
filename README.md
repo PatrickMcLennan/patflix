@@ -5,6 +5,7 @@
 ### UI / UX:
  - [react](https://github.com/facebook/react)
  - [styled-components](https://github.com/styled-components/styled-components)
+ - [framer motion](https://www.framer.com/motion/)
 
 ### GraphQL:
  - [urql](https://github.com/FormidableLabs/urql)
@@ -13,21 +14,21 @@
 ### State Management:
  - [zustand](https://github.com/pmndrs/zustand)
 
- ### Testing:
+### Testing:
  - [jest](https://github.com/facebook/jest)
  - [@testing-library/react](https://github.com/testing-library/react-testing-library)
 
- ### Documentation
+### Documentation
  - [jsdocs](https://jsdoc.app/)
  - [better-docs](https://github.com/SoftwareBrothers/better-docs)
 
- ### Hygiene & Standards
+### Hygiene & Standards
  - [eslint](https://github.com/eslint/eslint)
  - [typescript](https://github.com/microsoft/TypeScript)
  - [prettier](https://github.com/prettier/prettier)
 
 
-|How do I...?            | ...by running:|
+|How do I...            | ...by running:|
 |:---                    |           ---:|
 |Run a Dev Server?       | `yarn dev`    |
 |Run Tests?              | `yarn test`   |
