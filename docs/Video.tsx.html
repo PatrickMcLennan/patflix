@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> Video.tsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,110 +79,36 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>Video.tsx</h1>
                 </header>
                 
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><style type="text/css" rel="stylesheet">
+        <article>
+            <pre class="prettyprint source linenums"><code>import ReactPlayer from 'react-player/lazy';
 
-    h1 { 
-        text-align: center;
-    }
-    table { 
-        width: 80%;
-        margin: 0 auto;
-    }
-    
-</style>
-<h1>A Next.js Client for <a href="https://github.com/PatrickMcLennan/nas_server">my media server</a></h1>
-<h2>Main Tools Used</h2>
-<h3>UI / UX:</h3>
-<ul>
-<li><a href="https://github.com/facebook/react">react</a></li>
-<li><a href="https://github.com/styled-components/styled-components">styled-components</a></li>
-<li><a href="https://www.framer.com/motion/">framer motion</a></li>
-</ul>
-<h3>GraphQL:</h3>
-<ul>
-<li><a href="https://github.com/FormidableLabs/urql">urql</a></li>
-<li><a href="https://github.com/Outpox/apollo-server-micro">apollo-server-micro</a></li>
-</ul>
-<h3>State Management:</h3>
-<ul>
-<li><a href="https://github.com/pmndrs/zustand">zustand</a></li>
-</ul>
-<h3>Testing:</h3>
-<ul>
-<li><a href="https://github.com/facebook/jest">jest</a></li>
-<li><a href="https://github.com/testing-library/react-testing-library">@testing-library/react</a></li>
-</ul>
-<h3>Documentation</h3>
-<ul>
-<li><a href="https://jsdoc.app/">jsdocs</a></li>
-<li><a href="https://github.com/SoftwareBrothers/better-docs">better-docs</a></li>
-</ul>
-<h3>Hygiene &amp; Standards</h3>
-<ul>
-<li><a href="https://github.com/eslint/eslint">eslint</a></li>
-<li><a href="https://github.com/microsoft/TypeScript">typescript</a></li>
-<li><a href="https://github.com/prettier/prettier">prettier</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">How do I...</th>
-<th style="text-align:right">...by running:</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Run a Dev Server?</td>
-<td style="text-align:right"><code>yarn dev</code></td>
-</tr>
-<tr>
-<td style="text-align:left">Run Tests?</td>
-<td style="text-align:right"><code>yarn test</code></td>
-</tr>
-<tr>
-<td style="text-align:left">Build for prod?</td>
-<td style="text-align:right"><code>yarn build</code></td>
-</tr>
-<tr>
-<td style="text-align:left">Run a prod server?</td>
-<td style="text-align:right"><code>yarn start</code></td>
-</tr>
-<tr>
-<td style="text-align:left">Generate Documentation?</td>
-<td style="text-align:right"><code>yarn docs</code></td>
-</tr>
-</tbody>
-</table></article>
+interface Props {
+  src: string;
+}
+
+/**
+ * Video player component.  Will Lazy-load the video
+ * given via the src prop
+ * @param {string} src The src of the video
+ * @example &lt;ReactPlayer url={src} />
+ * @see https://github.com/CookPete/react-player
+ */
+
+export default function Video({ src }: Props): JSX.Element {
+  return &lt;ReactPlayer url={src} />;
+}
+</code></pre>
+        </article>
     </section>
-
-
 
 
 

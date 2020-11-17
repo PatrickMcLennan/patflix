@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Props.html">Props</a></li></ul><h3>Global</h3><ul><li><a href="global.html#FooterStyles">FooterStyles</a></li><li><a href="global.html#HeaderStyles">HeaderStyles</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#LinkStyles">LinkStyles</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#FooterStyles">FooterStyles</a></li><li><a href="global.html#HeaderStyles">HeaderStyles</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#LinkStyles">LinkStyles</a></li><li><a href="global.html#TextStyles">TextStyles</a></li></ul></div>
                 
             </nav>
         </div>
@@ -91,6 +91,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>import styled from 'styled-components';
 import Text from './Text';
+
 /**
  * Global Footer component.
  */
@@ -102,7 +103,9 @@ export default function Footer(): JSX.Element {
   const year = new Date().getFullYear();
   return (
     &lt;FooterStyles>
-      &lt;Text as="span">Patrick McLennan&amp;#169; {year}&lt;/Text>
+      &lt;Text data-testid="copyright" as="span">
+        Patrick McLennan&amp;#169; {year}
+      &lt;/Text>
     &lt;/FooterStyles>
   );
 }

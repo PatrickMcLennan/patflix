@@ -7,8 +7,9 @@ import { useForm } from 'react-hook-form';
 import { AnimatePresence, motion } from 'framer-motion';
 import { popUp } from '../styles/animations';
 import { useRef } from 'react';
+import { useRouter } from 'next/router';
 
-type NavData = {
+export type NavData = {
   href: string;
   aria: string;
   text: string;
@@ -17,7 +18,7 @@ type NavData = {
 /**
  * An ordered array of the links to be rendered.
  */
-const links: NavData[] = [
+export const links: NavData[] = [
   {
     aria: 'Home Page',
     href: '/',
@@ -55,7 +56,7 @@ function NavLink({ href, aria, text }: NavData): JSX.Element {
   return (
     <li key={aria}>
       <LinkStyles href={href} passHref>
-        <Text aria-label={aria} as="a" title={aria}>
+        <Text aria-label={aria} data-testid="nav_a" as="a" title={aria}>
           {text}
         </Text>
       </LinkStyles>
@@ -103,8 +104,13 @@ export default function Nav(): JSX.Element {
     toggleSearch,
   }));
   const { register, handleSubmit } = useForm();
+  const router = useRouter();
   const form = useRef(null);
-  const onSubmit = values => console.log(values);
+  const onSubmit = ({ query }) =>
+    router.push({
+      pathname: `search/[query]`,
+      query: { query },
+    });
 
   return (
     <HeaderStyles>
@@ -115,12 +121,18 @@ export default function Nav(): JSX.Element {
         <ul className="ul">{links.map(NavLink)}</ul>
       </nav>
       <div className="search">
-        <button aria-label="Open the Search bar" onClick={toggleSearch} title="Open the Search bar">
+        <button
+          aria-label="Open the Search bar"
+          data-testid="nav_toggle"
+          onClick={toggleSearch}
+          title="Open the Search bar"
+        >
           <CgSearch />
         </button>
         <AnimatePresence>
           {searchIsOpen && (
             <FormStyles
+              data-testid="nav_form"
               initial={popUp.initial}
               animate={popUp.animate}
               exit={popUp.exit}
@@ -130,8 +142,9 @@ export default function Nav(): JSX.Element {
               <input
                 aria-label="Type your search in"
                 autoComplete="off"
+                data-testid="nav_input"
                 ref={register}
-                name="searchQuery"
+                name="query"
                 placeholder="What are you looking for..."
                 title="Type your search in"
                 type="search"

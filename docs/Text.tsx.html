@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Props.html">Props</a></li></ul><h3>Global</h3><ul><li><a href="global.html#FooterStyles">FooterStyles</a></li><li><a href="global.html#HeaderStyles">HeaderStyles</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#LinkStyles">LinkStyles</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#FooterStyles">FooterStyles</a></li><li><a href="global.html#HeaderStyles">HeaderStyles</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#LinkStyles">LinkStyles</a></li><li><a href="global.html#TextStyles">TextStyles</a></li></ul></div>
                 
             </nav>
         </div>
@@ -90,23 +90,43 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import styled from 'styled-components';
+
+interface Props {
+  as: React.ElementType | keyof JSX.IntrinsicElements;
+  props?: React.HTMLAttributes&lt;unknown>;
+  className?: string;
+  children: string | JSX.Element;
+  title?: string;
+}
 /**
  * A reusable Text component.  All text elements should use this in
  * order to be responsive to the color scheme.
+ *
+ * @param {string} as The Element you want to render (styled-components API)
+ * @param {React.HTMLAttributes&lt;HTMLElement>} props Any additional HTML attributes you want to assign (optional)
+ * @param {string} className A class (optional)
+ * @param {string | JSX.Element} children The contents of the element
+ *
+ * @example
+ * const as = "a"
+ * const props = {
+ *  href: `/hello`
+ * }
+ * const className = `a className`
+ * const children = `lorem ipsum`
+ *
+ * return (
+ *  &lt;a class="a className" href="/hello">lorem ipsum&lt;/a>
+ * )
  */
-
-interface Props {
-  children: unknown;
-  as: string;
-}
 
 const TextStyles = styled.span`
   color: white;
 `;
 
-export default function Text({ as, children }: Props, ...props: unknown[]): JSX.Element {
+export default function Text({ as, children, title, ...props }: Props): JSX.Element {
   return (
-    &lt;TextStyles as={as} {...props}>
+    &lt;TextStyles as={as} {...props} title={title ?? ``}>
       {children}
     &lt;/TextStyles>
   );

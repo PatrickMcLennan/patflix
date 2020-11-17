@@ -1,7 +1,6 @@
 import { css, createGlobalStyle, FlattenSimpleInterpolation } from 'styled-components';
 import reset from 'styled-reset';
-
-type CSS = FlattenSimpleInterpolation;
+import { CSS } from '../types/utils';
 
 /**
  * Global stles & resets.

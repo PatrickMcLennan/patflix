@@ -1,3 +1,15 @@
+<style type="text/css" rel="stylesheet">
+
+    h1 { 
+        text-align: center;
+    }
+    table { 
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+</style>
+
 # A Next.js Client for [my media server](https://github.com/PatrickMcLennan/nas_server)
 
 ## Main Tools Used
@@ -28,7 +40,7 @@
  - [prettier](https://github.com/prettier/prettier)
 
 
-|How do I...            | ...by running:|
+|How do I...             | ...by running:|
 |:---                    |           ---:|
 |Run a Dev Server?       | `yarn dev`    |
 |Run Tests?              | `yarn test`   |

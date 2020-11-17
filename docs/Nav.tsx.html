@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Props.html">Props</a></li></ul><h3>Global</h3><ul><li><a href="global.html#FooterStyles">FooterStyles</a></li><li><a href="global.html#HeaderStyles">HeaderStyles</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#LinkStyles">LinkStyles</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#FooterStyles">FooterStyles</a></li><li><a href="global.html#HeaderStyles">HeaderStyles</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#LinkStyles">LinkStyles</a></li><li><a href="global.html#TextStyles">TextStyles</a></li></ul></div>
                 
             </nav>
         </div>
@@ -98,8 +98,9 @@ import { useForm } from 'react-hook-form';
 import { AnimatePresence, motion } from 'framer-motion';
 import { popUp } from '../styles/animations';
 import { useRef } from 'react';
+import { useRouter } from 'next/router';
 
-type NavData = {
+export type NavData = {
   href: string;
   aria: string;
   text: string;
@@ -108,7 +109,7 @@ type NavData = {
 /**
  * An ordered array of the links to be rendered.
  */
-const links: NavData[] = [
+export const links: NavData[] = [
   {
     aria: 'Home Page',
     href: '/',
@@ -146,7 +147,7 @@ function NavLink({ href, aria, text }: NavData): JSX.Element {
   return (
     &lt;li key={aria}>
       &lt;LinkStyles href={href} passHref>
-        &lt;Text aria-label={aria} as="a" title={aria}>
+        &lt;Text aria-label={aria} data-testid="nav_a" as="a" title={aria}>
           {text}
         &lt;/Text>
       &lt;/LinkStyles>
@@ -194,8 +195,13 @@ export default function Nav(): JSX.Element {
     toggleSearch,
   }));
   const { register, handleSubmit } = useForm();
+  const router = useRouter();
   const form = useRef(null);
-  const onSubmit = values => console.log(values);
+  const onSubmit = ({ query }) =>
+    router.push({
+      pathname: `search/[query]`,
+      query: { query },
+    });
 
   return (
     &lt;HeaderStyles>
@@ -206,12 +212,18 @@ export default function Nav(): JSX.Element {
         &lt;ul className="ul">{links.map(NavLink)}&lt;/ul>
       &lt;/nav>
       &lt;div className="search">
-        &lt;button aria-label="Open the Search bar" onClick={toggleSearch} title="Open the Search bar">
+        &lt;button
+          aria-label="Open the Search bar"
+          data-testid="nav_toggle"
+          onClick={toggleSearch}
+          title="Open the Search bar"
+        >
           &lt;CgSearch />
         &lt;/button>
         &lt;AnimatePresence>
           {searchIsOpen &amp;&amp; (
             &lt;FormStyles
+              data-testid="nav_form"
               initial={popUp.initial}
               animate={popUp.animate}
               exit={popUp.exit}
@@ -221,8 +233,9 @@ export default function Nav(): JSX.Element {
               &lt;input
                 aria-label="Type your search in"
                 autoComplete="off"
+                data-testid="nav_input"
                 ref={register}
-                name="searchQuery"
+                name="query"
                 placeholder="What are you looking for..."
                 title="Type your search in"
                 type="search"

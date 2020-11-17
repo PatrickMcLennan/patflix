@@ -72,7 +72,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Props.html">Props</a></li></ul><h3>Global</h3><ul><li><a href="global.html#FooterStyles">FooterStyles</a></li><li><a href="global.html#HeaderStyles">HeaderStyles</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#LinkStyles">LinkStyles</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#FooterStyles">FooterStyles</a></li><li><a href="global.html#HeaderStyles">HeaderStyles</a></li><li><a href="global.html#links">links</a></li><li><a href="global.html#LinkStyles">LinkStyles</a></li><li><a href="global.html#TextStyles">TextStyles</a></li></ul></div>
                 
             </nav>
         </div>
@@ -100,21 +100,16 @@ interface Props {
  * Use this to edit any metadata or SEO information per page.
  *
  * @param {string} title The Title tag contents.
- *
  * @example
- * const title = "My Title"
- * return (
- *  &lt;head>
- *      &lt;title>My Title&lt;/title>
- *  &lt;/head>
- * )
- *
+ *  &lt;Head>
+ *      &lt;title>{title}&lt;/title>
+ *  &lt;/Head>
  * @see https://nextjs.org/docs/api-reference/next/head
  */
 export default function SEO({ title }: Props): JSX.Element {
   return (
     &lt;Head>
-      &lt;title>{title}&lt;/title>
+      &lt;title data-testid="head_title">{title}&lt;/title>
     &lt;/Head>
   );
 }
