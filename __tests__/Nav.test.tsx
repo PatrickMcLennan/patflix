@@ -35,23 +35,31 @@ test(`Search overlay`, async () => {
       <Nav />
     </ThemeProvider>
   );
-  const [toggle, form, input] = [
+  const [toggle, form, input, submit] = [
     queryByTestId(`nav_toggle`),
     queryByTestId(`nav_form`),
     queryByTestId(`nav_input`),
+    queryByTestId(`nav_submit`),
   ];
 
-  [form, input].forEach(element => expect(element).not.toBeInTheDocument());
+  [form, input, submit].forEach(element => expect(element).not.toBeInTheDocument());
   fireEvent.click(toggle);
 
-  const [newForm, newInput] = [queryByTestId(`nav_form`), queryByTestId(`nav_input`)];
+  const [newForm, newInput, newSubmit] = [
+    queryByTestId(`nav_form`),
+    queryByTestId(`nav_input`),
+    queryByTestId(`nav_submit`),
+  ];
 
   expect(newForm).toBeInTheDocument();
   expect(newForm).toContainElement(newInput);
 
-  fireEvent.change(newInput, { target: { value: `testing` } });
-
-  await act(async () => {
-    fireEvent.submit(newForm);
+  fireEvent.input(newInput, { target: { value: `testing` } });
+  act(() => {
+    fireEvent.click(newSubmit);
   });
+
+  //   await waitFor(() => {
+  //     expect(2 + 2).toBe(4);
+  //   });
 });

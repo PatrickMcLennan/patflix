@@ -149,6 +149,9 @@ export default function Nav(): JSX.Element {
                 title="Type your search in"
                 type="search"
               />
+              <button data-testid="nav_submit" type="submit">
+                <CgSearch />
+              </button>
             </FormStyles>
           )}
         </AnimatePresence>
