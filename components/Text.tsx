@@ -1,10 +1,11 @@
+import { ReactChildren, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface Props {
   as: React.ElementType | keyof JSX.IntrinsicElements;
   props?: React.HTMLAttributes<unknown>;
   className?: string;
-  children: string | JSX.Element;
+  children: string | ReactNode;
   title?: string;
 }
 /**
