@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { CgSearch } from 'react-icons/cg';
 import Text from './Text';
 import useLayout from '../stores/useLayout';
@@ -8,7 +8,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { popUp } from '../styles/animations';
 import { useRef } from 'react';
 import { useRouter } from 'next/router';
+import Box from './Box';
 
+/**
+ * Needed information for each link
+ */
 export type NavData = {
   href: string;
   aria: string;
@@ -49,17 +53,14 @@ export const links: NavData[] = [
 /**
  * Link component
  */
-const LinkStyles = styled(Link)`
-  ${({ theme: { fontLine } }) => fontLine(1.4, 1.6)}
-`;
 function NavLink({ href, aria, text }: NavData): JSX.Element {
   return (
-    <li key={aria}>
-      <LinkStyles href={href} passHref>
-        <Text aria-label={aria} data-testid="nav_a" as="a" title={aria}>
+    <li className="li" key={aria}>
+      <Link href={href} passHref>
+        <Text aria-label={aria} className="a" data-testid="nav_a" as="a" title={aria}>
           {text}
         </Text>
-      </LinkStyles>
+      </Link>
     </li>
   );
 }
@@ -68,6 +69,7 @@ function NavLink({ href, aria, text }: NavData): JSX.Element {
  * Global Navigation component.
  */
 const HeaderStyles = styled.header`
+  ${({ theme: { pagePadding } }) => pagePadding()}
   grid-area: 'nav';
   display: grid;
   grid-template-areas:
@@ -75,6 +77,7 @@ const HeaderStyles = styled.header`
     'nav'
     'search';
   grid-template-columns: max-content 1fr max-content;
+  align-items: center;
 
   .h1 {
     grid-area: 'h1';
@@ -83,6 +86,49 @@ const HeaderStyles = styled.header`
 
   .nav {
     grid-area: 'nav';
+    align-self: stretch;
+
+    .ul {
+      ${({ theme: { flex } }) => flex(`flex-start`)};
+
+      ${({ theme: { tablet } }) =>
+        tablet(css`
+          display: none;
+        `)}
+    }
+
+    .li {
+      &:not(:last-of-type) {
+        margin-right: 10px;
+      }
+    }
+
+    .a {
+      ${({ theme: { fontLine } }) => fontLine(1.6, 2)};
+    }
+
+    .hamburger {
+      display: none;
+      margin-left: auto;
+      min-height: 100%;
+
+      ${({ theme: { tablet } }) =>
+        tablet(css`
+          display: block;
+        `)}
+
+      span {
+        display: block;
+        height: 2px;
+        width: 25px;
+        border-radius: 1px;
+        background-color: white;
+      }
+
+      &-middle {
+        margin: 8px 0;
+      }
+    }
   }
 
   .search {
@@ -119,6 +165,11 @@ export default function Nav(): JSX.Element {
       </Text>
       <nav className="nav">
         <ul className="ul">{links.map(NavLink)}</ul>
+        <button aria-label="Open the Nav menu" className="hamburger" title="Open the Nav menu">
+          <span className="hamburger-top"></span>
+          <span className="hamburger-middle"></span>
+          <span className="hamburger-bottom"></span>
+        </button>
       </nav>
       <div className="search">
         <button
@@ -126,6 +177,7 @@ export default function Nav(): JSX.Element {
           data-testid="nav_toggle"
           onClick={toggleSearch}
           title="Open the Search bar"
+          type="button"
         >
           <CgSearch />
         </button>

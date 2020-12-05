@@ -10,7 +10,7 @@ class CustomDocument extends Document {
   render(): JSX.Element {
     return (
       <html lang="en">
-        <Head>TODO: Put starter meta tags in here</Head>
+        <Head></Head>
         <body>
           <Main />
           <NextScript />

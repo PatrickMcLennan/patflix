@@ -5,6 +5,9 @@ import { CSS } from '../types/utils';
 /**
  * Global stles & resets.
  */
+
+export const TABLET_BREAKPOINT = 1000;
+export const MOBILE_BREAKPOINT = 600;
 export const GlobalStyles = createGlobalStyle`
     ${reset}
 
@@ -30,6 +33,11 @@ export const GlobalStyles = createGlobalStyle`
         grid-template-rows: max-content 1fr max-content;
     }
 
+    button {
+        border: none;
+        background-color: rgba(0,0,0,0);
+    }
+
     button:hover {
         cursor: pointer;
     }
@@ -42,6 +50,21 @@ export const GlobalStyles = createGlobalStyle`
 
 export const theme = {
   /**
+   * Breakpoints
+   */
+
+  tablet: (content: CSS): CSS => css`
+    @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
+      ${content}
+    }
+  `,
+
+  mobile: (content: CSS): CSS => css`
+    @media screen and (max-width: ${MOBILE_BREAKPOINT}px) {
+      ${content}
+    }
+  `,
+  /**
    * Layout
    */
   flex: (jc = `center`, ai = `center`, fd = `row`, fw = `nowrap`): CSS => css`
@@ -50,6 +73,18 @@ export const theme = {
     align-items: ${ai};
     flex-direction: ${fd};
     flex-wrap: ${fw};
+  `,
+
+  pagePadding: () => css`
+    padding: 0 10%;
+
+    @media screen and (max-width: ${TABLET_BREAKPOINT}px) {
+      padding: 0 5%;
+    }
+
+    @media screen and (max-width: ${MOBILE_BREAKPOINT}px) {
+      padding: 0 5%;
+    }
   `,
 
   /**

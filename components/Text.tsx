@@ -1,4 +1,4 @@
-import { ReactChildren, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -34,9 +34,9 @@ const TextStyles = styled.span`
   color: white;
 `;
 
-export default function Text({ as, children, title, ...props }: Props): JSX.Element {
+export default function Text({ as, children, ...props }: Props): JSX.Element {
   return (
-    <TextStyles as={as} {...props} title={title ?? ``}>
+    <TextStyles as={as} {...props}>
       {children}
     </TextStyles>
   );
