@@ -1,5 +1,10 @@
 module.exports = {
     presets: ["next/babel", "@babel/preset-typescript"],
-    plugins: [["styled-components", { "ssr": true, "displayName": true }]]
+    plugins: [
+        "babel-plugin-transform-typescript-metadata",
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        ["@babel/plugin-proposal-class-properties", { "loose": true  }],
+        ["styled-components", { "ssr": true, "displayName": true }], 
+    ]
 }
 
